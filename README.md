@@ -1,1 +1,1 @@
-# projectm
+# ProjectM
