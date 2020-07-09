@@ -1,6 +1,7 @@
-# ProjectM
+# PROJECT M API GATEWAY
 
-> Rest API Microservices For Project M
+> Rest API Gateway for Project M All request form clients should go to this Api.
+> Then this Api request the right microservice to serve the client.
 
 ## Quick Start Using Venv
 
@@ -32,7 +33,7 @@ https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-g
 $ gcloud auth application-default login
 
 # Deploy App
-$ gcloud app deploy
+$ gcloud app deploy api-gateway.yaml
 
 # Go To Url
 $ gcloud app browse

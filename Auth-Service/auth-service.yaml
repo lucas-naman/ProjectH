@@ -1,0 +1,3 @@
+runtime: python38
+service: auth-service
+entrypoint: gunicorn -b :$PORT auth-service:app

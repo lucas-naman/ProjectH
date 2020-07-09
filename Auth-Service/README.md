@@ -1,6 +1,6 @@
-# ProjectM
+# PROJECT M Auth Service
 
-> Rest API Microservices For Project M
+> Rest API AUTH Service 
 
 ## Quick Start Using Venv
 
@@ -19,7 +19,7 @@ $ source env/bin/activate
 $ pip install  -r requirements.txt
 
 # Run Server (http://localhost:8080)
-python main.py
+python auth-service.py
 ```
 
 ## Deploy On Google App Engine
@@ -32,7 +32,7 @@ https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-g
 $ gcloud auth application-default login
 
 # Deploy App
-$ gcloud app deploy
+$ gcloud app deploy auth-service.yaml
 
 # Go To Url
 $ gcloud app browse

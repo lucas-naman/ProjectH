@@ -1,0 +1,3 @@
+runtime: python38
+service: default
+entrypoint: gunicorn -b :$PORT api-gateway:app
