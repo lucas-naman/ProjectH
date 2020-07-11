@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm.value)">
+    <br />
+    <br />
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your email</mat-label>
+            <input matInput formControlName="email"  placeholder="example@example.com" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="loginForm['controls']['email'].invalid">{{getEmailErrorMessage(loginForm['controls']['email'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput id="pwd" formControlName="pwd" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm['controls']['pwd'].invalid">{{getPwdErrorMessage(loginForm['controls']['pwd'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  
+  </form>
+
+
+  <button style="margin-top: 20px;" mat-stroked-button>Login with google</button>

@@ -1,0 +1,45 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerSubmit(registerForm.value)">
+    <br />
+    <br />
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your username</mat-label>
+            <input matInput formControlName="username" maxlength="10" placeholder="My name" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint align="end">{{registerForm['controls']['username'].value?.length || 0}}/10</mat-hint>
+            <mat-error *ngIf="registerForm['controls']['username'].invalid">{{getUsernameErrorMessage(registerForm['controls']['username'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your email</mat-label>
+            <input matInput formControlName="email" placeholder="example@example.com" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="registerForm['controls']['email'].invalid">{{getEmailErrorMessage(registerForm['controls']['email'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="pwd1" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="registerForm['controls']['pwd1'].invalid">{{getPwd1ErrorMessage(registerForm['controls']['pwd1'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm your password</mat-label>
+            <input matInput formControlName="pwd2" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="registerForm['controls']['pwd2'].invalid">{{getPwd2ErrorMessage(registerForm['controls']['pwd2'])}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+    <span style="color:#f44336; margin-bottom: 10px;" *ngIf="smt===true && registerForm.errors?.pwdDiff && (registerForm.touched || registerForm.dirty)">Passwords must be equals.</span>
+    </p>
+    <button mat-raised-button color="primary" type="submit">register</button>
+</form>
