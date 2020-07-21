@@ -1,3 +1,21 @@
-runtime: nodejs
-env: flex
+runtime: python27
 service: front-service
+api_version: 1
+threadsafe: true
+handlers:
+- url: /
+  static_files: dist/Front-Service/index.html
+  upload: dist/Front-Service/index.html
+- url: /
+  static_dir: dist/Front-Service
+
+skip_files:
+  - e2e/
+  - node_modules/
+  - src/
+  - coverage
+  - ^(.*/)?\..*$
+  - ^(.*/)?.*\.json$
+  - ^(.*/)?.*\.md$
+  - ^(.*/)?.*\.yaml$
+  - ^LICENSE

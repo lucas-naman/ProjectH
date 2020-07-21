@@ -1,11 +1,17 @@
 from flask import Flask
+from routes.login import login
+from routes.register import register
+from routes.check_token import check_token
 
 # init app
 app = Flask(__name__)
+app.register_blueprint(login, url_prefix="/login")
+app.register_blueprint(register, url_prefix="/register")
+app.register_blueprint(check_token, url_prefix="/check_token")
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def root():
-    return "Auth Service For Project M"
+    return "Auth Service For Project M", 200
 
 # Run server
 if __name__ == '__main__':
