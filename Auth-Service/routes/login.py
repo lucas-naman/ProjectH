@@ -4,7 +4,7 @@ from .models.user import User
 
 login = Blueprint("login", __name__)
 
-@login.route("", methods=["GET"])
+@login.route("", methods=["POST"])
 def _login():
     if "password" not in request.form or "email" not in request.form:
         return "Missing field", 400
