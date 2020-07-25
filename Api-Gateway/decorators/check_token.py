@@ -2,6 +2,7 @@ from flask import request, g
 from functools import wraps
 from services.ip import get_ip
 import requests
+from models.User import User
 
 def check_token(f):
     @wraps(f)

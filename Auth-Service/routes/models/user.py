@@ -18,6 +18,14 @@ class User(object):
         }
         return ans
 
+    def to_dict_nopwd(self):
+        ans = {
+            u'username': self.username,
+            u'email': self.email,
+            u'registration_date': self.registration_date,
+        }
+        return ans
+
     @staticmethod
     def from_dict(source):
         if u'registration_date' in source:

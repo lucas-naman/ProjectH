@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, g
 from services.myRequest import MyRequest
 from decorators.check_token import check_token
 from services.ip import get_ip
