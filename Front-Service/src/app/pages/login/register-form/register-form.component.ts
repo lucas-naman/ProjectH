@@ -22,10 +22,10 @@ export class RegisterFormComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService) {
     this.registerForm = this.formBuilder.group({
-      username: new FormControl('zzz', [Validators.required]),
-      email: new FormControl('zzz@zzz.com', [Validators.required, Validators.email]),
-      pwd1: new FormControl('ssssss', [Validators.required, Validators.minLength(6)]),
-      pwd2: new FormControl('ssssss', [Validators.required])
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      pwd1: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      pwd2: new FormControl('', [Validators.required])
     },
     { validators: pwdCheckValidator});
    }
