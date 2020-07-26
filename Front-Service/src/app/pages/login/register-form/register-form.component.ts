@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { pwdCheckValidator } from '../../../directives/check-pwd.directive';
+import { AuthenticationService } from '../../../_services';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register-form',
@@ -12,13 +15,17 @@ export class RegisterFormComponent implements OnInit {
   registerForm: any;
   hide = true;
   smt = false;
+  loading = false;
+  error = ""
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService) {
     this.registerForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      pwd1: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      pwd2: new FormControl('', [Validators.required])
+      username: new FormControl('zzz', [Validators.required]),
+      email: new FormControl('zzz@zzz.com', [Validators.required, Validators.email]),
+      pwd1: new FormControl('ssssss', [Validators.required, Validators.minLength(6)]),
+      pwd2: new FormControl('ssssss', [Validators.required])
     },
     { validators: pwdCheckValidator});
    }
@@ -27,10 +34,24 @@ export class RegisterFormComponent implements OnInit {
   }
 
   public registerSubmit(data: any) {
+        
     this.smt = true;
-    console.log(data)
-    // this.registerForm.controls['pwd1'].reset()
-    // this.registerForm.controls['pwd2'].reset()
+
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.register(data["email"], data["pwd"], data["username"])
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.router.navigate(["/home"]);
+      },
+      error => {
+        this.error = error;
+        this.loading = false;
+      });
   }
 
   /**

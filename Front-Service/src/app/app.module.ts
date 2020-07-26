@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from './modules/material.module'
+import { MaterialModule } from './modules/material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,7 @@ import { RegisterFormComponent } from './pages/login/register-form/register-form
 import { PwdCheckValidatorDirective } from './directives/check-pwd.directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NavbarsComponent } from './_nav/navbars/navbars.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,7 @@ import { environment } from '../environments/environment';
     LoginFormComponent,
     RegisterFormComponent,
     PwdCheckValidatorDirective,
+    NavbarsComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,13 @@ import { environment } from '../environments/environment';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,14 +9,15 @@ auth = Blueprint("auth", __name__)
 @auth.route("/login", methods=["POST"])
 def _login():
     if request.form:
+        print(request.form["email"])
         return MyRequest.post("auth", "/login", request.form, request.headers)
-    return "Failed", 401
+    return "Failed", 400
 
 @auth.route("/register", methods=["POST"])
 def _register():
     if request.form:
         return MyRequest.post("auth", "/register", request.form, request.headers)
-    return "Failed", 401
+    return "Failed", 400
 
 @auth.route("/me", methods=["GET"])
 @check_token

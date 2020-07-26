@@ -42,9 +42,7 @@ def _register():
         return "Email already taken", 400
 
     # Push on Database
-
+    # And return a token  
     newUser = User.from_dict(request.form)
-    db.collection(u'Users').add(newUser.to_dict())
-
-    # Request OK
-    return "Account created", 200
+    _token = newUser.generate_token(db.collection(u'Users').add(newUser.to_dict())[1].id, db)
+    return jsonify(token=_token.decode())

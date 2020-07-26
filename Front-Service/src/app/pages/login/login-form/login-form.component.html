@@ -19,10 +19,17 @@
             <mat-error *ngIf="loginForm['controls']['pwd'].invalid">{{getPwdErrorMessage(loginForm['controls']['pwd'])}}</mat-error>
         </mat-form-field>
     </p>
-    
-    <button mat-raised-button color="primary" type="submit">Login</button>
+    <p>
+        <span style="color:#f44336; margin-bottom: 10px;" *ngIf="error">{{ error }}</span>
+    </p>
+
+    <button *ngIf="!loading" mat-raised-button color="primary" type="submit">Login</button>
+    <button *ngIf="loading" mat-raised-button color="primary" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+    </button>
   
   </form>
 
 
-  <button style="margin-top: 20px;" mat-stroked-button>Login with google</button>
+  <button *ngIf="!loading" style="margin-top: 20px;" mat-stroked-button>Continue with google</button>

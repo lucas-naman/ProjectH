@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import { AuthenticationService } from '../../../_services';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
@@ -12,10 +14,16 @@ export class LoginFormComponent implements OnInit {
   loginForm: any;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder) {
+  loading = false;
+  submitted = false;
+  error = '';
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      pwd: ['', [Validators.required]]
+      email: ['zozo@zozo.com', [Validators.required, Validators.email]],
+      pwd: ['zozozo', [Validators.required]]
     })
   }
 
@@ -26,8 +34,24 @@ export class LoginFormComponent implements OnInit {
    * loginSubmit
   **/
   public loginSubmit(data: any) {
-    console.log(data)
-    this.loginForm.controls['pwd'].reset()
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.login(data["email"], data["pwd"])
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.router.navigate(["/home"]);
+          },
+          error => {
+            this.error = error;
+            this.loading = false;
+          });
   }
 
   /**
