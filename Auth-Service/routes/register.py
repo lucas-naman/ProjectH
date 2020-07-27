@@ -44,5 +44,6 @@ def _register():
     # Push on Database
     # And return a token  
     newUser = User.from_dict(request.form)
-    _token = newUser.generate_token(db.collection(u'Users').add(newUser.to_dict())[1].id, db)
+    usr = db.collection(u'Users').add(newUser.to_dict())
+    _token = newUser.generate_token(usr[1].id, db)
     return jsonify(token=_token.decode())

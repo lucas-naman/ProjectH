@@ -3,13 +3,11 @@ from services.myRequest import MyRequest
 from decorators.check_token import check_token
 from services.ip import get_ip
 
-
 auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["POST"])
 def _login():
     if request.form:
-        print(request.form["email"])
         return MyRequest.post("auth", "/login", request.form, request.headers)
     return "Failed", 400
 

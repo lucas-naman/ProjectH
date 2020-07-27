@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 import { environment } from '../../environments/environment';
 
@@ -10,7 +11,12 @@ export class AuthenticationService {
     private currentTokenSubject: BehaviorSubject<String>;
     public currentToken: Observable<String>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+        private cookieService: CookieService) {
+        var token = this.cookieService.get('token');
+        if (token) {
+            localStorage.setItem('currentToken', token);
+        }
         this.currentTokenSubject = new BehaviorSubject<String>(JSON.parse(localStorage.getItem('currentToken')));
         this.currentToken = this.currentTokenSubject.asObservable();
     }
@@ -27,6 +33,7 @@ export class AuthenticationService {
             .pipe(map(res => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('token', JSON.stringify(res["token"]));
+                this.cookieService.set('token', JSON.stringify(res["token"]));
                 this.currentTokenSubject.next(res["token"]);
                 return res;
             }));
@@ -48,6 +55,7 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
+        this.cookieService.deleteAll();
         localStorage.removeItem('token');
         this.currentTokenSubject.next(null);
     }

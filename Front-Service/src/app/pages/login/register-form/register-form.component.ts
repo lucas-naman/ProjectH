@@ -42,7 +42,7 @@ export class RegisterFormComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.register(data["email"], data["pwd"], data["username"])
+    this.authenticationService.register(data["email"], data["pwd1"], data["username"])
     .pipe(first())
     .subscribe(
       data => {
