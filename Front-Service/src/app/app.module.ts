@@ -20,6 +20,9 @@ import { PwdCheckValidatorDirective } from './directives/check-pwd.directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarsComponent } from './_nav/navbars/navbars.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SpotifyComponent } from './pages/spotify/spotify.component';
+import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { NavbarsComponent } from './_nav/navbars/navbars.component';
     RegisterFormComponent,
     PwdCheckValidatorDirective,
     NavbarsComponent,
+    ProfileComponent,
+    SpotifyComponent,
+    SpotifyRedirectComponent,
   ],
   imports: [
     BrowserModule,

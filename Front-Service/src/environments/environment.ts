@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://project-h-283916.ew.r.appspot.com'
+  //apiUrl: 'https://project-h-283916.ew.r.appspot.com',
+  apiUrl: 'http://localhost:8081',
 };
 
 /*

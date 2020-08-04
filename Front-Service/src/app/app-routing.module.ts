@@ -4,6 +4,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './_helpers';
 import { NavbarsComponent } from './_nav/navbars/navbars.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SpotifyComponent } from './pages/spotify/spotify.component';
+import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
 
 const routes: Routes = [
     {
@@ -12,6 +15,9 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
         { path: 'home', component: HomeComponent },
+        { path: 'profile', component: ProfileComponent },
+        { path: 'spotify', component: SpotifyComponent },
+        { path: 'spotify_redirect', component: SpotifyRedirectComponent },
       ]
     },
 

@@ -4,16 +4,16 @@
     <p>
         <mat-form-field appearance="outline">
             <mat-label>Enter your username</mat-label>
-            <input matInput formControlName="username" maxlength="10" placeholder="My name" required>
+            <input matInput type="text"  formControlName="username" maxlength="15" placeholder="My name" autocorrect="off" autocapitalize="none" autocomplete="off" required>
             <mat-icon matSuffix>account_box</mat-icon>
-            <mat-hint align="end">{{registerForm['controls']['username'].value?.length || 0}}/10</mat-hint>
+            <mat-hint align="end">{{registerForm['controls']['username'].value?.length || 0}}/15</mat-hint>
             <mat-error *ngIf="registerForm['controls']['username'].invalid">{{getUsernameErrorMessage(registerForm['controls']['username'])}}</mat-error>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="outline">
             <mat-label>Enter your email</mat-label>
-            <input matInput formControlName="email" placeholder="example@example.com" required>
+            <input matInput type="email" formControlName="email" placeholder="example@example.com" autocorrect="off" autocapitalize="none" autocomplete="off" required>
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="registerForm['controls']['email'].invalid">{{getEmailErrorMessage(registerForm['controls']['email'])}}</mat-error>
         </mat-form-field>

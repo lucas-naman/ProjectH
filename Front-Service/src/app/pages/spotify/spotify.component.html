@@ -1,0 +1,33 @@
+<div class="container" *ngIf="loggedIn == false && loading === false">
+    <a mat-raised-button href="https://accounts.spotify.com/authorize?client_id=cf45da4d55ea4d35b9b5191f641d4445&response_type=code&redirect_uri=http://localhost:4200/spotify_redirect&scope=user-read-recently-played%20user-top-read%20user-read-private%20user-library-read%20playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20playlist-modify-private%20user-follow-modify%20user-follow-read%20user-library-modify&state=34fFs29kd09&show_dialog=true">Connect your spotify account</a>
+</div>
+<div class="container" *ngIf="loading === true">
+    <mat-spinner class="center"></mat-spinner>
+</div>
+<div class="layout" *ngIf="loggedIn == true && loading === false">
+    <button style="float:right"  mat-raised-button color="primary" (click)="disconect()">Logout</button>
+    <h1>Spotify</h1>
+    <p>Logged in as {{ username }}</p>
+    <h2>Playlists</h2>
+
+    <mat-table [dataSource]="datasource" class="mat-elevation-z8">
+        <ng-container matColumnDef="index">
+            <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
+            <mat-cell *matCellDef="let index = index"> {{index}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+             <mat-header-cell class="mat-column-name" *matHeaderCellDef> Name </mat-header-cell>
+             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="nbtracks" >
+            <mat-header-cell *matHeaderCellDef> Tracks </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nbTracks}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="share" >
+            <mat-header-cell *matHeaderCellDef> Tracks </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nbTracks}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+</div>
