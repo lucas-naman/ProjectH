@@ -23,6 +23,8 @@ import { NavbarsComponent } from './_nav/navbars/navbars.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SpotifyComponent } from './pages/spotify/spotify.component';
 import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
+import { TablePlaylistsComponent } from './sharedComponents/table-playlists/table-playlists.component';
+import { TableSongsComponent } from './sharedComponents/table-songs/table-songs.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spoti
     ProfileComponent,
     SpotifyComponent,
     SpotifyRedirectComponent,
+    TablePlaylistsComponent,
+    TableSongsComponent,
   ],
   imports: [
     BrowserModule,

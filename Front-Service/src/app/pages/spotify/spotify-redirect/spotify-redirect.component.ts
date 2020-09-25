@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { SpotifyService } from '../spotify.service';
+import { SpotifyService } from '../../../_services/spotify.service';
 
 @Component({
   selector: 'app-spotify-redirect',

@@ -1,0 +1,28 @@
+<mat-table *ngIf="!loading" [dataSource]="datasource" class="mat-elevation-z8">
+    <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> Index </mat-header-cell>
+        <mat-cell *matCellDef="let index = index"> {{index}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+            <mat-header-cell class="mat-column-name" *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nbtracks" >
+        <mat-header-cell *matHeaderCellDef> Tracks </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nbTracks}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id" >
+        <mat-header-cell *matHeaderCellDef> Sync </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-icon-button color="primary">
+                <mat-icon>sync</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div class="container" *ngIf="loading">
+    <mat-spinner class="center"></mat-spinner>
+</div>

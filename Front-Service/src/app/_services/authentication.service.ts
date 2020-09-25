@@ -17,9 +17,9 @@ export class AuthenticationService {
         private router: Router) {
         var token = this.cookieService.get('token');
         if (token) {
-            localStorage.setItem('currentToken', token);
+            localStorage.setItem('token', token);
         }
-        this.currentTokenSubject = new BehaviorSubject<String>(JSON.parse(localStorage.getItem('currentToken')));
+        this.currentTokenSubject = new BehaviorSubject<String>(JSON.parse(localStorage.getItem('token')));
         this.currentToken = this.currentTokenSubject.asObservable();
     }
 
