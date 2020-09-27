@@ -7,7 +7,8 @@ import { NavbarsComponent } from './_nav/navbars/navbars.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SpotifyComponent } from './pages/spotify/spotify.component';
 import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
-
+import { DeezerComponent } from './pages/deezer/deezer.component';
+import { DeezerRedirectComponent } from './pages/deezer/deezer-redirect/deezer-redirect.component';
 const routes: Routes = [
     {
       path: '',
@@ -18,6 +19,8 @@ const routes: Routes = [
         { path: 'profile', component: ProfileComponent },
         { path: 'spotify', component: SpotifyComponent },
         { path: 'spotify_redirect', component: SpotifyRedirectComponent },
+        { path: 'deezer', component: DeezerComponent },
+        { path: 'deezer_redirect', component: DeezerRedirectComponent },
       ]
     },
 

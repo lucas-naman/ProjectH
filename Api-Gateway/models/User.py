@@ -9,6 +9,7 @@ class User(object):
         self.password = password # hash the password here
         self.registration_date = registration_date
         self.spotify = None
+        self.deezer = None
         self.id = ""
 
     def to_dict(self):
@@ -36,6 +37,8 @@ class User(object):
             user = User(source[u'username'], source['email'], source[u'password'])
         if u'spotify' in source:
             user.spotify = source[u'spotify']
+        if u'deezer' in source:
+            user.deezer = source['deezer']
         return user
 
     def generate_token(self, id, db):

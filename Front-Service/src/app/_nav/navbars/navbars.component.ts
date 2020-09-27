@@ -16,7 +16,7 @@ export class NavbarsComponent implements OnDestroy {
     { link:"/spotify", icon:"/assets/iconss/spotify.png", text:"Spotify" },
     // { link:"/youtube", icon:"/assets/iconss/youtube.png", text:"Youtube" },
     // { link:"/amazon", icon:"/assets/iconss/amazon-music.png", text:"Amazon Music" },
-    // { link:"/deezer", icon:"/assets/iconss/deezer.png", text:"Deezer" },
+    { link:"/deezer", icon:"/assets/iconss/deezer.png", text:"Deezer" },
   ]
 
   private _mobileQueryListener: () => void;

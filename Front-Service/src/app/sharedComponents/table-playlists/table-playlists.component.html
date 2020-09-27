@@ -14,7 +14,7 @@
     <ng-container matColumnDef="id" >
         <mat-header-cell *matHeaderCellDef> Sync </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" (click)="openDialog(element.id)">
                 <mat-icon>sync</mat-icon>
             </button>
         </mat-cell>
@@ -26,3 +26,4 @@
 <div class="container" *ngIf="loading">
     <mat-spinner class="center"></mat-spinner>
 </div>
+

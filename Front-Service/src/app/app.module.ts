@@ -25,6 +25,9 @@ import { SpotifyComponent } from './pages/spotify/spotify.component';
 import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
 import { TablePlaylistsComponent } from './sharedComponents/table-playlists/table-playlists.component';
 import { TableSongsComponent } from './sharedComponents/table-songs/table-songs.component';
+import { SyncModalComponent } from './sharedComponents/sync-modal/sync-modal.component';
+import { DeezerComponent } from './pages/deezer/deezer.component';
+import { DeezerRedirectComponent } from './pages/deezer/deezer-redirect/deezer-redirect.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { TableSongsComponent } from './sharedComponents/table-songs/table-songs.
     SpotifyRedirectComponent,
     TablePlaylistsComponent,
     TableSongsComponent,
+    SyncModalComponent,
+    DeezerComponent,
+    DeezerRedirectComponent,
   ],
   imports: [
     BrowserModule,

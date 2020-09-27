@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GatewayService } from '../../_services/gateway.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SyncModalComponent } from '../sync-modal/sync-modal.component';
 
 export interface Playlist {
   name: string,
@@ -24,7 +25,7 @@ export class TablePlaylistsComponent implements OnInit {
   displayedColumns: string[] = ['index', 'name', 'nbtracks', 'id'];
   isMobile : Boolean;
 
-  constructor(private gatewayService: GatewayService, private breakpointObserver: BreakpointObserver) {
+  constructor(private gatewayService: GatewayService, private breakpointObserver: BreakpointObserver, public dialog: MatDialog) {
 
    }
 
@@ -49,6 +50,19 @@ export class TablePlaylistsComponent implements OnInit {
         }
         this.datasource = this.playlists
         this.loading = false
+    });
+  }
+
+  openDialog(playlist_id) {
+    const dialogRef = this.dialog.open(SyncModalComponent, {
+      data: {
+        service: this.service,
+        playlist_id: playlist_id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 }

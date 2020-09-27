@@ -1,0 +1,16 @@
+<div class="container" *ngIf="loggedIn == false && loading === false">
+    <a mat-raised-button 
+    href="https://connect.deezer.com/oauth/auth.php?app_id=437302&redirect_uri=http://127.0.0.1:4200/deezer_redirect&perms=basic_access,email,manage_library,offline_access">
+    Connect your deezer account
+    </a>
+</div>
+<div class="container" *ngIf="loading === true">
+    <mat-spinner class="center"></mat-spinner>
+</div>
+<div class="layout" *ngIf="loggedIn == true && loading === false">
+    <button style="float:right"  mat-raised-button color="primary" (click)="disconect()">Change deezer account</button>
+    <h1>Deezer</h1>
+    <p>Logged in as {{ username }}</p>
+    <h2>Playlists</h2>
+    <app-table-playlists [service]="2" ></app-table-playlists>
+</div>
