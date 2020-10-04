@@ -2,6 +2,7 @@ from flask import Flask
 from routes.auth.auth import auth
 from routes.spotify.spotify import spotify
 from routes.deezer.deezer import deezer
+from routes.export.export import export
 from flask_cors import CORS
 
 # init app
@@ -10,6 +11,7 @@ CORS(app)
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(spotify, url_prefix="/spotify")
 app.register_blueprint(deezer, url_prefix="/deezer")
+app.register_blueprint(export, url_prefix='/export')
 
 @app.route('/')
 def root():

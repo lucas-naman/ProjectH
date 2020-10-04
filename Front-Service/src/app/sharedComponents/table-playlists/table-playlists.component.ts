@@ -57,7 +57,14 @@ export class TablePlaylistsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(result)
+      if (result !== false && result !== undefined) {
+        this.gatewayService.export(this.service, result)
+        .subscribe((res => {
+          console.log(res)
+        })
+        )
+      }
     });
   }
 }

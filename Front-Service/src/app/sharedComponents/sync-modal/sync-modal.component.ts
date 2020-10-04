@@ -42,7 +42,10 @@ export class SyncModalComponent {
     (err) => {
       console.log(err)
     });
-    
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
