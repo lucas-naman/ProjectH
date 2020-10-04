@@ -20,11 +20,11 @@ export class DeezerComponent implements OnInit {
       (res) => {
         if (res["status"] === "true") {
           this.loggedIn = true;
-          // this.deezerService.get_info().subscribe(
-          //   r => {
-          //     this.username = r["display_name"];
-          //     this.loading = false;
-          //  });
+          this.deezerService.get_info().subscribe(
+            r => {
+              this.username = r["name"];
+              this.loading = false;
+           });
         } else {
           this.loading = false;
         }

@@ -22,4 +22,12 @@ export class GatewayService {
     return this.listServices[service].getPlaylist(playlist_id)
   }
 
+  resToPlaylists(service, res) {
+    return this.listServices[service].resToPlaylists(res)
+  }
+
+  resToSongs(service, res) {
+    return this.listServices[service].resToSongs(res)
+  }
+
 }

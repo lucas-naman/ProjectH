@@ -1,6 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+export interface Songs {
+  name: string,
+  desc: string,
+  songs: Array<Song>,
+}
+
+export interface Song {
+  name: string,
+  album: string,
+}
+
 @Component({
   selector: 'app-table-songs',
   templateUrl: './table-songs.component.html',

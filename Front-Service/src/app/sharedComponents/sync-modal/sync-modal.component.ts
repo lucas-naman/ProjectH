@@ -7,6 +7,17 @@ export interface DialogData {
   playlist_id: string;
 }
 
+export interface Songs {
+  name: string,
+  desc: string,
+  songs: Array<Song>,
+}
+
+export interface Song {
+  name: string,
+  album: string,
+}
+
 @Component({
   selector: 'app-sync-modal',
   templateUrl: './sync-modal.component.html',
@@ -14,19 +25,22 @@ export interface DialogData {
 })
 export class SyncModalComponent {
 
-  playlist = null;
+  playlist : Songs = {name: "", desc: "", songs: new Array<Song>()};
   loading = true;
 
   constructor(public dialogRef: MatDialogRef<SyncModalComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private gateway: GatewayService) {
-
     }
 
   ngOnInit(): void {
-    this.gateway.getPlaylist(this.data.service, this.data.playlist_id).subscribe(playlist => {
-      this.playlist = playlist;
+    this.gateway.getPlaylist(this.data.service, this.data.playlist_id)
+    .subscribe((playlist) => {
+      this.playlist = this.gateway.resToSongs(this.data.service, playlist)
       this.loading = false;
+    },
+    (err) => {
+      console.log(err)
     });
     
   }

@@ -20,7 +20,6 @@ export class TablePlaylistsComponent implements OnInit {
   @Input() service: number;
 
   loading = true
-  playlists = [];
   datasource : any;
   displayedColumns: string[] = ['index', 'name', 'nbtracks', 'id'];
   isMobile : Boolean;
@@ -44,11 +43,7 @@ export class TablePlaylistsComponent implements OnInit {
     });
     this.gatewayService.getPlaylists(this.service).subscribe(
       r => {
-        for (let item of r["items"]) {
-          var pl : Playlist = {name: item["name"], id: item["id"], nbTracks: item["tracks"]["total"]}
-          this.playlists.push(pl);
-        }
-        this.datasource = this.playlists
+        this.datasource = this.gatewayService.resToPlaylists(this.service, r)
         this.loading = false
     });
   }

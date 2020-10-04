@@ -62,7 +62,6 @@ def _playlists():
 @check_token
 @spotify_getToken
 def _playlist():
-    print(request.headers["playlist_id"])
     if 'playlist_id' in request.headers:
         headers = {'Authorization': 'Bearer ' + g.user.spotify["access_token"]}
         r = requests.get('https://api.spotify.com/v1/playlists/' + request.headers["playlist_id"], headers=headers)
