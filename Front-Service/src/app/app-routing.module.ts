@@ -9,25 +9,27 @@ import { SpotifyComponent } from './pages/spotify/spotify.component';
 import { SpotifyRedirectComponent } from './pages/spotify/spotify-redirect/spotify-redirect.component';
 import { DeezerComponent } from './pages/deezer/deezer.component';
 import { DeezerRedirectComponent } from './pages/deezer/deezer-redirect/deezer-redirect.component';
+import { WebmanifestComponent } from './pages/webmanifest/webmanifest.component';
+
 const routes: Routes = [
-    {
-      path: '',
-      component: NavbarsComponent,
-      canActivate: [AuthGuard],
-      children: [
-        { path: 'home', component: HomeComponent },
-        { path: 'profile', component: ProfileComponent },
-        { path: 'spotify', component: SpotifyComponent },
-        { path: 'spotify_redirect', component: SpotifyRedirectComponent },
-        { path: 'deezer', component: DeezerComponent },
-        { path: 'deezer_redirect', component: DeezerRedirectComponent },
-      ]
-    },
+  // { path: 'manifest.webmanifest', component: WebmanifestComponent },
+  { path: 'login', component: LoginComponent},
+  {
+    path: '',
+    component: NavbarsComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'spotify', component: SpotifyComponent },
+      { path: 'spotify_redirect', component: SpotifyRedirectComponent },
+      { path: 'deezer', component: DeezerComponent },
+      { path: 'deezer_redirect', component: DeezerRedirectComponent },
+    ]
+  },
 
-    { path: 'login', component: LoginComponent},
-
-    // otherwise redirect to home
-    { path: '**', redirectTo: 'login' }
+  // // // otherwise redirect to home
+  // { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

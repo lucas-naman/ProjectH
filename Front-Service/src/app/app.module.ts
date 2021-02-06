@@ -28,6 +28,7 @@ import { TableSongsComponent } from './sharedComponents/table-songs/table-songs.
 import { SyncModalComponent } from './sharedComponents/sync-modal/sync-modal.component';
 import { DeezerComponent } from './pages/deezer/deezer.component';
 import { DeezerRedirectComponent } from './pages/deezer/deezer-redirect/deezer-redirect.component';
+import { WebmanifestComponent } from './pages/webmanifest/webmanifest.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DeezerRedirectComponent } from './pages/deezer/deezer-redirect/deezer-r
     SyncModalComponent,
     DeezerComponent,
     DeezerRedirectComponent,
+    WebmanifestComponent,
   ],
   imports: [
     BrowserModule,
