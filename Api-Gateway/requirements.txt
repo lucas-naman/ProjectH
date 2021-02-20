@@ -2,6 +2,6 @@ flask==1.1.1
 gunicorn==19.8.1
 requests
 flask_cors
-pyjwt
+pyjwt==1.7.1
 
 google-cloud-firestore==1.7.0
