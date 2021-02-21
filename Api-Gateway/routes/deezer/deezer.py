@@ -54,14 +54,13 @@ def _playlists():
     return {"status": "error"}, 400
 
 
-@deezer.route("/playlist", methods=['GET'])
+@deezer.route("/playlist/<playlist_id>", methods=['GET'])
 @check_token
-def _playlist():
-    if 'playlist_id' in request.headers:
-        r = requests.get('https://api.deezer.com/playlist/' +
-                         request.headers['playlist_id'] + '?access_token=' + g.user.deezer["token"])
-        if r.status_code:
-            return r.json(), 200
+def _playlist(playlist_id):
+    r = requests.get('https://api.deezer.com/playlist/' +
+                     playlist_id + '?access_token=' + g.user.deezer["token"])
+    if r.status_code:
+        return r.json(), 200
     return {"status": "error"}, 400
 
 

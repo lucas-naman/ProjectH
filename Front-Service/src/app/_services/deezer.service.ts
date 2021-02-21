@@ -3,74 +3,78 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 export interface Playlist {
-  name: string,
-  id:string,
-  nbTracks: string,
+  name: string;
+  id: string;
+  nbTracks: string;
 }
 
-export interface Songs {
-  name: string,
-  desc: string,
-  songs: Array<Song>,
+export interface Songs {
+  name: string;
+  desc: string;
+  songs: Array<Song>;
 }
 
 export interface Song {
-  name: string,
-  album: string,
+  name: string;
+  album: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DeezerService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   connected() {
-    return this.http.get(`${environment.apiUrl}/deezer/connected`)
+    return this.http.get(`${environment.apiUrl}/deezer/connected`);
   }
 
   sendCode(code) {
-    const payload = new HttpParams()
-    .set('code', code)
-    return this.http.post(`${environment.apiUrl}/deezer/connect`, payload)
+    const payload = new HttpParams().set('code', code);
+    return this.http.post(`${environment.apiUrl}/deezer/connect`, payload);
   }
 
   disconect() {
-    return this.http.delete(`${environment.apiUrl}/deezer/disconnect`)
+    return this.http.delete(`${environment.apiUrl}/deezer/disconnect`);
   }
 
   get_info() {
-    return this.http.get(`${environment.apiUrl}/deezer/info`)
+    return this.http.get(`${environment.apiUrl}/deezer/info`);
   }
 
   getPlaylists() {
-    return this.http.get(`${environment.apiUrl}/deezer/playlists`)
+    return this.http.get(`${environment.apiUrl}/deezer/playlists`);
   }
 
   getPlaylist(playlist_id: string) {
-    let headers = new HttpHeaders();
-    headers = headers.set('playlist_id', playlist_id.toString());
-    return this.http.get(`${environment.apiUrl}/deezer/playlist`, {headers: headers})
+    return this.http.get(
+      `${environment.apiUrl}/deezer/playlist/` + playlist_id.toString()
+    );
   }
 
-  resToPlaylists(r: any) : Array<Playlist> {
-    let playlists : Array<Playlist> = [];
+  resToPlaylists(r: any): Array<Playlist> {
+    let playlists: Array<Playlist> = [];
     for (let p in r['data']) {
-      var pl : Playlist = {name: r["data"][p]["title"], id: r["data"][p]["id"], nbTracks: r["data"][p]['nb_tracks']};
-      playlists.push(pl)
+      var pl: Playlist = {
+        name: r['data'][p]['title'],
+        id: r['data'][p]['id'],
+        nbTracks: r['data'][p]['nb_tracks'],
+      };
+      playlists.push(pl);
     }
-    return playlists
+    return playlists;
   }
-
 
   resToSongs(r): Songs {
-    let songs:  Songs = {name: "", desc: "", songs: new Array<Song>()};
-    console.log(r)
+    let songs: Songs = { name: '', desc: '', songs: new Array<Song>() };
+    console.log(r);
     songs.name = r['title'];
-    songs.desc = r['description']
+    songs.desc = r['description'];
     for (let s in r.tracks.data) {
-      songs.songs.push({name: r.tracks.data[s].title, album: r.tracks.data[s].album.title})
+      songs.songs.push({
+        name: r.tracks.data[s].title,
+        album: r.tracks.data[s].album.title,
+      });
     }
     return songs;
   }
