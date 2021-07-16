@@ -28,5 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Launch on google cloud Cloud Run
 
-$ gcloud builds submit --tag gcr.io/project-m-282702/front-service
-$ gcloud run deploy --image gcr.io/project-m-282702/Project-M --platform managed
+$ npm install
+$ ng build --prod
+$ gcloud app deploy front-service.yaml
